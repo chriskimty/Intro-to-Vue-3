@@ -7,7 +7,7 @@
   <!-- Import Styles -->
   <link rel="stylesheet" href="./assets/styles.css" />
   <!-- Import Vue.js -->
-  <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
 </head>
 
 <body>
@@ -21,15 +21,19 @@
         </div>
         <div class="product-info">
           <h1>{{ product }}</h1>
-          <!-- v-if directive; if inStock = true, show first <p>, else, show 2nd <p> -->
-          <p v-if="inventory > 10">In Stock</p>
-          <p v-else-if="inventory <=10 && inventory > 0">Almost sold out!</p>
-          <!-- don't always need to pair it with v-else -->
+          <p v-if="inStock">In Stock</p>
           <p v-else>Out of Stock</p>
-          <p v-if="onSale">On Sale!</p>
+          <ul>
+            <!-- v-for works like a for loop/conveyor belt -->
+            <!-- we are specifying what we are looping over (after the 'in') -->
+            <!-- this is the collection that we are iterating over -->
+            <!-- detail is the alias/element at the given time of that iteration -->
+            <li v-for="detail in details">{{ detail }}</li>
+          </ul>
+          <!-- this gives each DOM element a unique key -->
+          <div v-for="variant in variants" :key="variant.id">{{variant.color}}</div>
 
-          <!-- another way to achieve the same is to use v-show directive, used to toggle elements' visibility, but not for this case bc then it would display none. but good for things like modals. -->
-          <!-- <p v-show="inStock">In Stock</p> -->
+          <div v-for="(size, index) in sizes" :key="index">{{ size }}</div>
         </div>
       </div>
     </div>
