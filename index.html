@@ -7,7 +7,7 @@
   <!-- Import Styles -->
   <link rel="stylesheet" href="./assets/styles.css" />
   <!-- Import Vue.js -->
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
 </head>
 
 <body>
@@ -15,35 +15,18 @@
     <div class="nav-bar"></div>
 
     <div class="cart">Cart({{ cart }})</div>
+    <!-- adding the components here  -->
+    <!-- all of these are reusable, independent -->
+    <product-display :premium="premium"></product-display>
 
-    <div class="product-display">
-      <div class="product-container">
-        <div class="product-image">
-          <img v-bind:src="image">
-        </div>
-        <div class="product-info">
-          <!-- Computer property -->
-          <h1>{{ title }}</h1>
-          <p v-if="inStock">In Stock</p>
-          <p v-else>Out of Stock</p>
-          <p v-if="onSale">{{ displaySale }}</p>
-          <ul>
-            <li v-for="detail in details">{{ detail }}</li>
-          </ul>
-
-          <!-- (variant, index) - this is just passing TWO properties in the v-for  -->
-          <div v-for="(variant, index) in variants" :key="variant.id" @mouseover="updateVariant(index)"
-            class="color-circle" :style="{ backgroundColor: variant.color }"></div>
-          <button class="button" :class="{ disabledButton: !inStock }" :disabled="!inStock" v-on:click="addToCart">Add
-            to Cart</button>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Import App -->
   <script src="./main.js"></script>
 
+  <!-- Import Components -->
+  <script src="./components/ProductDisplay.js"></script>
+  <script src="./components/ProductDetails.js"></script>
   <!-- Mount App -->
   <script>
     const mountedApp = app.mount('#app')
