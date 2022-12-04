@@ -19,7 +19,7 @@
     <div class="product-display">
       <div class="product-container">
         <div class="product-image">
-          <img v-bind:src="image">
+          <img v-bind:src="image" :class="{'out-of-stock-img': !inStock}">
         </div>
         <div class="product-info">
           <h1>{{ product }}</h1>
@@ -28,15 +28,18 @@
           <ul>
             <li v-for="detail in details">{{ detail }}</li>
           </ul>
-          <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}
+
+          <!-- How do we get the colors to show?  -->
+          <!-- class binding -->
+          <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)"
+            class="color-circle" :style="{backgroundColor: variant.color}
+            ">
+            <!-- ^ps backgroundColor, even if it is a CSS property, it is in JS, so needs to be in camelCase -->
           </div>
-          <!-- ^mouseover is like hover for vue -->
-          <!-- Event Listener -->
-          <!-- v-on directive -->
-          <!-- syntax => event we're listener for = expression we're triggering (can put the expression directly, or create a function/method in the JS )-->
-          <button class="button" v-on:click="addToCart">Add to Cart</button>
-          <!-- ***Shorthand for v-on:click ==> @click -->
-          <button class="button" @click="removeFromCart">Remove from Cart</button>
+          <!-- disable the button when out of stock - class binding -->
+          <!-- *class binding gives you ability to write inline ternary operators!  -->
+          <button class="button" :class="{disabledButton: !inStock}" :disabled="!inStock" @click="addToCart">Add to
+            Cart</button>
         </div>
       </div>
     </div>
@@ -48,6 +51,7 @@
   <!-- Mount App -->
   <script>
     const mountedApp = app.mount('#app')
+    // on dev tools, can check using mountedApp (i.e. mountedApp.inStock)
   </script>
 </body>
 
