@@ -26,7 +26,7 @@
           <p v-else-if="inventory <=10 && inventory > 0">Almost sold out!</p>
           <!-- don't always need to pair it with v-else -->
           <p v-else>Out of Stock</p>
-          <p v-if="onSale">On Sale</p>
+          <p v-if="onSale">On Sale!</p>
 
           <!-- another way to achieve the same is to use v-show directive, used to toggle elements' visibility, but not for this case bc then it would display none. but good for things like modals. -->
           <!-- <p v-show="inStock">In Stock</p> -->
