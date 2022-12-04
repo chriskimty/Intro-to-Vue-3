@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Vue Mastery</title>
-    <!-- Import Styles -->
-    <link rel="stylesheet" href="./assets/styles.css" />
-    <!-- Import Vue.js -->
-    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
-  </head>
-  <body>
-    <div id="app">
-      <h1>Product goes here</h1>
-    </div>
 
-    <!-- Import Js -->
-    <script src="./main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Vue Mastery</title>
+  <!-- Import Styles -->
+  <link rel="stylesheet" href="./assets/styles.css" />
+  <!-- Import Vue.js -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- Step 5: this now has access to our vue app  -->
+    <!-- double curly brace syntax is like a "phone": which has access to a phone within our vue app -->
+    <h1>{{product}}</h1>
+    <p>{{description}}</p>
+  </div>
+
+  <!-- Step 3: Import App to our HTML -->
+  <script src="./main.js"></script>
+  <!-- Step 4: Mount App to the DOM; plugged our app into that div w/ the id of app  -->
+  <script>
+    const mountedApp = app.mount('#app')
+  </script>
+</body>
+
 </html>
