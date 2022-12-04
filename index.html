@@ -7,20 +7,34 @@
   <!-- Import Styles -->
   <link rel="stylesheet" href="./assets/styles.css" />
   <!-- Import Vue.js -->
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
 </head>
 
 <body>
   <div id="app">
-    <!-- Step 5: this now has access to our vue app  -->
-    <!-- double curly brace syntax is like a "phone": which has access to a phone within our vue app -->
-    <h1>{{product}}</h1>
-    <p>{{description}}</p>
+    <div class="nav-bar"></div>
+
+    <div class="product-display">
+      <div class="product-container">
+        <div class="product-image">
+          <!-- How do we bind src to image? :v-bind directive -->
+          <!-- we use v-bind to dynamically bind an attribute to an expression -->
+          <!-- in this case, attribute is the src and the expression is within the quotes. PS {{image}} is the SAME -->
+          <img v-bind:src="image" alt="green socks with vue logo">
+          <!-- ****shorthand for v-bind is literally just a colon <img :src ="image"> would achieve the same thing -->
+        </div>
+        <div class="product-info">
+          <h1>{{ product }}</h1>
+          <a :href="url">link</a>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Step 3: Import App to our HTML -->
+  <!-- Import App -->
   <script src="./main.js"></script>
-  <!-- Step 4: Mount App to the DOM; plugged our app into that div w/ the id of app  -->
+
+  <!-- Mount App -->
   <script>
     const mountedApp = app.mount('#app')
   </script>
