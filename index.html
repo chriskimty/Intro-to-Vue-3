@@ -14,11 +14,9 @@
   <div id="app">
     <div class="nav-bar"></div>
 
-    <div class="cart">Cart({{ cart }})</div>
-    <!-- adding the components here  -->
-    <!-- all of these are reusable, independent -->
-    <product-display :premium="premium"></product-display>
-
+    <div class="cart">Cart({{ cart.length }})</div>
+    <!-- added the event listener below -->
+    <product-display :premium="premium" @add-to-cart="updateCart" @remove-from-cart="removeItems"></product-display>
   </div>
 
   <!-- Import App -->
@@ -26,7 +24,7 @@
 
   <!-- Import Components -->
   <script src="./components/ProductDisplay.js"></script>
-  <script src="./components/ProductDetails.js"></script>
+
   <!-- Mount App -->
   <script>
     const mountedApp = app.mount('#app')
