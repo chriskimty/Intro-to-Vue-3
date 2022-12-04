@@ -14,6 +14,8 @@
   <div id="app">
     <div class="nav-bar"></div>
 
+    <div class="cart">Cart({{ cart }})</div>
+
     <div class="product-display">
       <div class="product-container">
         <div class="product-image">
@@ -24,16 +26,17 @@
           <p v-if="inStock">In Stock</p>
           <p v-else>Out of Stock</p>
           <ul>
-            <!-- v-for works like a for loop/conveyor belt -->
-            <!-- we are specifying what we are looping over (after the 'in') -->
-            <!-- this is the collection that we are iterating over -->
-            <!-- detail is the alias/element at the given time of that iteration -->
             <li v-for="detail in details">{{ detail }}</li>
           </ul>
-          <!-- this gives each DOM element a unique key -->
-          <div v-for="variant in variants" :key="variant.id">{{variant.color}}</div>
-
-          <div v-for="(size, index) in sizes" :key="index">{{ size }}</div>
+          <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}
+          </div>
+          <!-- ^mouseover is like hover for vue -->
+          <!-- Event Listener -->
+          <!-- v-on directive -->
+          <!-- syntax => event we're listener for = expression we're triggering (can put the expression directly, or create a function/method in the JS )-->
+          <button class="button" v-on:click="addToCart">Add to Cart</button>
+          <!-- ***Shorthand for v-on:click ==> @click -->
+          <button class="button" @click="removeFromCart">Remove from Cart</button>
         </div>
       </div>
     </div>
