@@ -17,15 +17,19 @@
     <div class="product-display">
       <div class="product-container">
         <div class="product-image">
-          <!-- How do we bind src to image? :v-bind directive -->
-          <!-- we use v-bind to dynamically bind an attribute to an expression -->
-          <!-- in this case, attribute is the src and the expression is within the quotes. PS {{image}} is the SAME -->
-          <img v-bind:src="image" alt="green socks with vue logo">
-          <!-- ****shorthand for v-bind is literally just a colon <img :src ="image"> would achieve the same thing -->
+          <img v-bind:src="image">
         </div>
         <div class="product-info">
           <h1>{{ product }}</h1>
-          <a :href="url">link</a>
+          <!-- v-if directive; if inStock = true, show first <p>, else, show 2nd <p> -->
+          <p v-if="inventory > 10">In Stock</p>
+          <p v-else-if="inventory <=10 && inventory > 0">Almost sold out!</p>
+          <!-- don't always need to pair it with v-else -->
+          <p v-else>Out of Stock</p>
+          <p v-if="onSale">On Sale</p>
+
+          <!-- another way to achieve the same is to use v-show directive, used to toggle elements' visibility, but not for this case bc then it would display none. but good for things like modals. -->
+          <!-- <p v-show="inStock">In Stock</p> -->
         </div>
       </div>
     </div>
